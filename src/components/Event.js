@@ -3,11 +3,14 @@ import Styled from 'styled-components';
 import items from '../data';
 
 const Event = (props) => {
- 
+  
     const item = items.find(item => {
+        conso.log('test', props.match.params.id)
         return `${item.id}` === props.match.params.id
     })
    
+   
+
 
     if(!item) return <h4>loading...</h4>
     return (

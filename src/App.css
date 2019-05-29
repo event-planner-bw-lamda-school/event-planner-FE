@@ -8,7 +8,6 @@
   width: 50%;
   background-color: #4e148c;
   background-image: url('./images/Plans.jpg');
-  background-repeat: repeat-y;
 }
 
 .App__Form {

@@ -9,6 +9,8 @@ class SignUpForm extends Component {
             email: '',
             password: '',
             name: '',
+            role: '',
+            company: '',
             hasAgreed: false
         };
 
@@ -20,6 +22,8 @@ class SignUpForm extends Component {
         let target = e.target;
         let value = target.type === 'checkbox' ? target.checked : target.value;
         let name = target.name;
+        let role = target.role;
+        let company = target.company;
 
         this.setState({
           [name]: value
@@ -28,6 +32,7 @@ class SignUpForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        // add new client using the api
 
         console.log('The form was submitted with the following data:');
         console.log(this.state);
@@ -44,6 +49,14 @@ class SignUpForm extends Component {
               <div className="FormField">
                 <label className="FormField__Label" htmlFor="password">Password</label>
                 <input type="password" id="password" className="FormField__Input" placeholder="Enter your password" name="password" value={this.state.password} onChange={this.handleChange} />
+              </div>
+              <div className="FormField">
+                <label className="FormField__Label" htmlFor="role">Role</label>
+                <input type="text" id="role" className="FormField__Input" placeholder="Enter your Role" name="role" value={this.state.role} onChange={this.handleChange} />
+              </div>
+              <div className="FormField">
+                <label className="FormField__Label" htmlFor="company">Company</label>
+                <input type="text" id="company" className="FormField__Input" placeholder="Enter your company name" name="company" value={this.state.company} onChange={this.handleChange} />
               </div>
               <div className="FormField">
                 <label className="FormField__Label" htmlFor="email">E-Mail Address</label>

@@ -93,7 +93,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Router basename="/react-auth-ui/">
+        <div basename="/react-auth-ui/">
           <div className="App">
             <div className="App__Form">
               <div className="PageSwitcher">
@@ -117,9 +117,9 @@ class App extends Component {
             <div className="App__Aside">
             </div>
           </div>
-        </Router>
-        <Event event={this.state.event} deleteEvent={this.deleteEvent} />
-        <EventList event={this.state.eventlist} />
+        </div>
+        {/* <Event event={this.state.event} deleteEvent={this.deleteEvent} />
+        <EventList event={this.state.eventlist} /> */}
       </div>
     );
   }

@@ -4,14 +4,16 @@
   color: white;
 }
 
-.App__Aside img {
+.App__Aside {
   width: 50%;
-  background-color: #66DAC7;
+  background-color: #4e148c;
+  background-image: url('./images/Plans.jpg');
+  background-repeat: repeat-y;
 }
 
 .App__Form {
   width: 50%;
-  background-color: #2E4158;
+  background-color: #2c0735;
   padding: 25px 40px;
   overflow: auto;
 }
@@ -23,7 +25,7 @@
 }
 
 .PageSwitcher__Item {
-  background-color: #4C5D72;
+  background-color: #4e148c;
   color: #9DA6B1;
   padding: 10px 25px;
   cursor: pointer;
@@ -34,8 +36,13 @@
   text-decoration: none;
 }
 
+.PageSwitcher__Item:hover {
+  background-color: #9DA6B1;
+  color: white;
+}
+
 .PageSwitcher__Item--Active {
-  background-color: #5ED0C0;
+  background-color: #4e148c;
   color: white;
 }
 
@@ -73,7 +80,7 @@
 
 .FormTitle__Link--Active {
   color: white;
-  border-bottom: 1px solid #199087;
+  border-bottom: 1px solid #4e148c;
 }
 
 .FormField {
@@ -104,7 +111,7 @@
 }
 
 .FormField__Button {
-  background-color: #52C4B9;
+  background-color: #4e148c;
   color: white;
   border: none;
   outline: none;
@@ -114,12 +121,21 @@
   font-weight: 500;
 }
 
+.FormField__Button:hover {
+  background-color: white;
+  color: #4e148c;
+}
+
 .FormField__Link {
   color: #66707D;
   text-decoration: none;
   display: inline-block;
-  border-bottom: 1.5px solid #225E62;
+  border-bottom: 1.5px solid #4e148c;
   padding-bottom: 5px;
+}
+
+.FormField__Link:hover {
+  color: white
 }
 
 .FormField__CheckboxLabel {
@@ -134,7 +150,7 @@
 
 .FormField__TermsLink {
   color: white;
-  border-bottom: 1px solid #199087;
+  border-bottom: 1px solid #4e148c;
   text-decoration: none;
   display: inline-block;
   padding-bottom: 2px;

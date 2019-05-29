@@ -14,7 +14,7 @@ class EventList extends Component {
                 </HEADER>
                 <STATUS>
                     <h1>My Events</h1>
-                    <Link to="/past" className="event_history">Past</Link><span className="span_break">|</span><Link to="/upcoming" className="event_history">Upcoming</Link><span className="span_break">|</span><Link to="/past" className="event_history">Add Event</Link>
+                    <Link to="/past" className="event_history">Past</Link><span className="span_break">|</span><Link to="/upcoming" className="event_history">Upcoming</Link><span className="span_break">|</span><Link to="/add-event" className="event_history">Add Event</Link>
                 </STATUS>
                 <WRAPPER>
                {items.map(item => {

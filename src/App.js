@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { HashRouter as Router, Route, Link, NavLink } from 'react-router-dom';
 import SignUpForm from './components/SignUpForm';
 import Login from './components/Login';
+import AddEvent from './components/AddEvent';
 import axios from 'axios';
 import Event from './components/Event';
 import EventList from './components/EventList';
@@ -34,7 +35,7 @@ class App extends Component {
 
  deleteEvent = (id) => {
    axios
-    .delete(`http://localhost:5000/events/${id}`)
+    .delete(`http://localhost:3000/event-list/${id}`)
     .then(res => {
       if (res.status === 200) {
         const events = [...this.state.events];
@@ -50,7 +51,7 @@ class App extends Component {
 
  createEvent = (event) => {
    axios
-    .post(`http://localhost:5000/events`, {event})
+    .post(`http://localhost:3000/events`, {event})
     .then(res => {
       if (res.status === 201) {
         Swal.fire(
@@ -71,7 +72,7 @@ class App extends Component {
    const {id} = eventUpdate;
 
    axios
-    .put(`http://localhost:5000/events/${id}`, {eventUpdate})
+    .put(`http://localhost:5000/event-list/${id}`, {eventUpdate})
     .then(res => {
       if (res.status === 200) {
         Swal.fire(
@@ -113,6 +114,7 @@ class App extends Component {
                 </Route>
                 <Route exact path="/event-list" component={EventList} />
                 <Route path="/event-list/:id" component={Event} />
+                <Route path="/add-event" component={AddEvent} />
             </div>
             <div className="App__Aside">
             </div>

@@ -96,7 +96,7 @@ class App extends Component {
       <div>
         <Router basename="/react-auth-ui/">
           <div className="App">
-            <div className="App__Form">
+            {/* <div className="App__Form">
               <div className="PageSwitcher">
                   <NavLink to="/Log-in" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Login</NavLink>
                   <NavLink exact to="/" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign Up</NavLink>
@@ -114,12 +114,14 @@ class App extends Component {
                 </Route>
                 <Route exact path="/event-list" component={EventList} />
                 <Route path="/event-list/:id" component={Event} deleteEvent={this.deleteEvent}/>
-            </div>
+            </div> */}
             <div className="App__Aside">
             </div>
           </div>
+          <Route exact path="/event-list" component={EventList} />
+          <Route path="/event-list/:id" component={Event} deleteEvent={this.deleteEvent}/>
         </Router>
-        /*<Event event={this.state.event} deleteEvent={this.deleteEvent} />
+        <Event event={this.state.event} deleteEvent={this.deleteEvent} />
         <EventList event={this.state.eventlist} />*/
       </div>
     );

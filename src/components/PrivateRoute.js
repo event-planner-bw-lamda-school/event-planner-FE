@@ -3,6 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 import Login from './Login';
 import SignUpForm from './SignUpForm';
 import axios from 'axios';
+import './App.css';
 
 const PrivateRoute =  App => Login => {
   return class extends Component {
@@ -14,11 +15,11 @@ const PrivateRoute =  App => Login => {
       };
     }
     componentDidMount() {
-      if (!localStorage.getItem('token')) {
-        this.setState({ loggedIn: true });
-      } else {
-        this.setState({ loggedIn: true });
-      }
+      // if (!localStorage.getItem('token')) {
+      //   this.setState({ loggedIn: true });
+      // } else {
+      //   this.setState({ loggedIn: true });
+      // }
     }
 
     loginUser = (userinfo) => {
@@ -41,15 +42,30 @@ const PrivateRoute =  App => Login => {
         })
         .catch(err => console.log(err))
     };
-
-    render() {
-      console.log(this.state)
-      if(this.state.isLoggingIn) {
-        return <Login loginUser={this.loginUser} />
+    btnSelected = e => {
+      const val = e.target.textContent.toLowerCase()
+      if(val.includes('login')) {
+        this.setState({
+          isLoggingIn: true
+        })
       } else {
-        return <SignUpForm registerUser={this.registerUser} />
+        this.setState({
+          isLoggingIn: false
+        })
       }
-      if (this.state.loggedIn) return <App />
+      console.log()
+    }
+    render() {
+      if(!this.state.loggedIn) { 
+        if(this.state.isLoggingIn) {
+          return <Login loginUser={this.loginUser} btnSelected={this.btnSelected}/> 
+        } else {
+          return <SignUpForm loginUser={this.loginUser} btnSelected={this.setState.btnSelected} />
+        }
+      } else {
+        return <App />
+      }
+      
     }
   };
 };

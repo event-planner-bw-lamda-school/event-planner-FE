@@ -6,8 +6,9 @@ import axios from 'axios';
 import Event from './components/Event';
 import EventList from './components/EventList';
 import Swal from 'sweetalert2';
+import PrivateRoute from './components/PrivateRoute';
 
-import './App.css';
+
 
 class App extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class App extends Component {
 
  getEvent = () => {
    axios
-     .get(`http://localhost:5000/events`)
+     .get(`http://localhost:3000/events`)
      .then(res => {
        console.log(res.data);
        this.setState({
@@ -34,7 +35,7 @@ class App extends Component {
 
  deleteEvent = (id) => {
    axios
-    .delete(`http://localhost:5000/events/${id}`)
+    .delete(`http://localhost:3000/events/${id}`)
     .then(res => {
       if (res.status === 200) {
         const events = [...this.state.events];
@@ -50,7 +51,7 @@ class App extends Component {
 
  createEvent = (event) => {
    axios
-    .post(`http://localhost:5000/events`, {event})
+    .post(`http://localhost:3000/events`, {event})
     .then(res => {
       if (res.status === 201) {
         Swal.fire(
@@ -71,7 +72,7 @@ class App extends Component {
    const {id} = eventUpdate;
 
    axios
-    .put(`http://localhost:5000/events/${id}`, {eventUpdate})
+    .put(`http://localhost:3000/events/${id}`, {eventUpdate})
     .then(res => {
       if (res.status === 200) {
         Swal.fire(
@@ -112,17 +113,17 @@ class App extends Component {
                 <Route path="/Log-in" component={Login}>
                 </Route>
                 <Route exact path="/event-list" component={EventList} />
-                <Route path="/event-list/:id" component={Event} />
+                <Route path="/event-list/:id" component={Event} deleteEvent={this.deleteEvent}/>
             </div>
             <div className="App__Aside">
             </div>
           </div>
         </Router>
-        <Event event={this.state.event} deleteEvent={this.deleteEvent} />
-        <EventList event={this.state.eventlist} />
+        /*<Event event={this.state.event} deleteEvent={this.deleteEvent} />
+        <EventList event={this.state.eventlist} />*/
       </div>
     );
   }
 }
 
-export default App;
+export default PrivateRoute(App)(Login);

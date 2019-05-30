@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import './App.css';
 
 class SignUpForm extends Component {
     constructor() {
@@ -11,7 +12,6 @@ class SignUpForm extends Component {
             name: '',
             role: '',
             company: '',
-            hasAgreed: false
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -33,9 +33,14 @@ class SignUpForm extends Component {
     handleSubmit(e) {
         e.preventDefault();
         // add new client using the api
-
         console.log('The form was submitted with the following data:');
         console.log(this.state);
+        const userInfo = this.state
+        if(userInfo.email === '' || userInfo.password === '' || userInfo.name ==='' || userInfo.role === '' || userInfo.company === '') {
+          alert("Fill in all the information!")
+        } else {
+          this.props.registerUser(userInfo)
+        }
     }
 
     render() {
@@ -62,13 +67,6 @@ class SignUpForm extends Component {
                 <label className="FormField__Label" htmlFor="email">E-Mail Address</label>
                 <input type="email" id="email" className="FormField__Input" placeholder="Enter your email" name="email" value={this.state.email} onChange={this.handleChange} />
               </div>
-
-              <div className="FormField">
-                <label className="FormField__CheckboxLabel">
-                    <input className="FormField__Checkbox" type="checkbox" name="hasAgreed" value={this.state.hasAgreed} onChange={this.handleChange} /> I agree all statements in <a href="" className="FormField__TermsLink">terms of service</a>
-                </label>
-              </div>
-
               <div className="FormField">
                   <button className="FormField__Button mr-20">Sign Up</button> <Link to="/sign-in" className="FormField__Link">I'm already member</Link>
               </div>

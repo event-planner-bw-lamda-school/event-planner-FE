@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 const Event = (props) => {
 
     const item = items.find(item => {
-        console.log(props.match.params.id);
+        console.log(props.match.params);
         return `${item.id}` === props.match.params.id
     });
 

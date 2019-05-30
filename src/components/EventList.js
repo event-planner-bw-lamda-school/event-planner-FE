@@ -24,7 +24,9 @@ class EventList extends Component {
                           <p>Event: {item.eventTitle}</p>
                           <p>Date: {item.date}</p>
                           <p>Contact: {item.email}</p>
-                          <button><Link to={`/event-list/${item.id}`}>Details</Link></button>
+                          <Link to={`/event-list/${item.id}`}>
+                            <button>Details</button>
+                          </Link>
                        </CARD>
 
                    )

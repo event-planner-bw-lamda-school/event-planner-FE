@@ -4,12 +4,14 @@ import SignUpForm from './components/SignUpForm';
 import Login from './components/Login';
 import axios from 'axios';
 import Event from './components/Event';
+import AddEvent from './components/AddEvent'
 import EventList from './components/EventList';
 import Swal from 'sweetalert2';
 import PrivateRoute from './components/PrivateRoute';
 import AddEvent from './components/AddEvent';
 import UpdateEvent from './components/UpdateEvent';
 
+<<<<<<< HEAD
 
 const URL = "https://event-planner-backend-larry.herokuapp.com/api"
 const token = localStorage.getItem('token');
@@ -18,6 +20,9 @@ const reqOptions = {
         Authorization: token
     }
 };
+=======
+import './components/App.css'
+>>>>>>> b1736f54d8b638c7b1bce415ef06135b19ff08a2
 
 class App extends Component {
   constructor(props) {
@@ -102,6 +107,7 @@ class App extends Component {
       <div>
         <div basename="/react-auth-ui/">
           <div className="App">
+<<<<<<< HEAD
           <Route exact path="/" component={EventList} />
           <Route exact path="/event-list/:id" render={(props) => <Event {...props} update={this.update}/>}/>
           <Route exact path="/add-event" component={AddEvent} />
@@ -110,29 +116,35 @@ class App extends Component {
             render={(props) => <UpdateEvent {...props} item={this.state.item} />}
           />
             {/* <div className="App__Form">
+=======
+            <div className="App__Form">
+>>>>>>> b1736f54d8b638c7b1bce415ef06135b19ff08a2
               <div className="PageSwitcher">
-                  <NavLink to="/Log-in" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Login</NavLink>
-                  <NavLink exact to="/" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign Up</NavLink>
+                  {/* <NavLink to="/Log-in" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Login</NavLink>
+                  <NavLink exact to="/" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign Up</NavLink> */}
                 </div>
 
                 <div className="FormTitle">
-                    <NavLink to="/Log-in" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Login</NavLink>
+                    {/* <NavLink to="/Log-in" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Login</NavLink>
                     or
-                    <NavLink exact to="/" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign Up</NavLink>
+                    <NavLink exact to="/" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign Up</NavLink> */}
                 </div>
 
-                <Route exact path="/" component={SignUpForm}>
-                </Route>
+                {/* <Route exact path="/" component={SignUpForm}> */}
+                {/* </Route>
                 <Route path="/Log-in" component={Login}>
-                </Route>
-                <Route exact path="/event-list" component={EventList} />
+                </Route> */}
+                <Route exact path="/" component={EventList} />
                 <Route path="/event-list/:id" component={Event} deleteEvent={this.deleteEvent}/>
-            </div> */}
+                <Route exact path="/add-event" component={AddEvent} />
+            </div>
+            <div className="App__Aside">
+            </div>
           </div>
         </div>
-      </div>
-    );
-  }
+        </div>
+        )
+    };   
 }
 
 export default PrivateRoute(App)(Login);

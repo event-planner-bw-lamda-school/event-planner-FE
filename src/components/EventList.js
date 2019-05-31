@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Styled from 'styled-components';
 import {Link} from 'react-router-dom';
+import AddEvent from './AddEvent';
 
 
 import items from '../data';
@@ -12,9 +13,9 @@ class EventList extends Component {
                 <HEADER>
                   <h1>Welcome!</h1>
                 </HEADER>
-                <STATUS>
-                    <h2>My Events</h2>
-                    <Link to="/past" className="event_history">Past</Link><span className="span_break">|</span><Link to="/upcoming" className="event_history">Upcoming</Link><span className="span_break">|</span><Link to="/past" className="event_history">Add Event</Link>
+                <STATUS className="myEvents">
+                    <h2>My Events:</h2>
+                    <Link to="/past" className="event_history">Past</Link><span className="span_break">|</span><Link to="/upcoming" className="event_history">Upcoming</Link><span className="span_break">|</span><Link to="/add-event" className="event_history">Add Event</Link>
                 </STATUS>
                 <WRAPPER>
                {items.map(item => {

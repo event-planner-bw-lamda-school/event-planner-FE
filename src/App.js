@@ -118,13 +118,10 @@ class App extends Component {
             <div className="App__Aside">
             </div>
           </div>
-          {/* <Route exact path="/event-list" component={EventList} />
-          <Route exact path="/event-list/:id" component={Event} deleteEvent={this.deleteEvent}/> */}
-          
         </div>
-      </div>
-    );
-  }
+        </div>
+        )
+    };   
 }
 
 export default PrivateRoute(App)(Login);

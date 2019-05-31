@@ -156,6 +156,11 @@
   margin-left: 5px;
 }
 
+h2 {
+  padding-right: 15px;
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

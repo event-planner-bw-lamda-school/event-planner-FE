@@ -115,13 +115,9 @@ class App extends Component {
                 <Route exact path="/event-list" component={EventList} />
                 <Route path="/event-list/:id" component={Event} deleteEvent={this.deleteEvent}/>
             </div> */}
-            <div className="App__Aside">
-            </div>
           </div>
           <Route exact path="/event-list" component={EventList} />
           <Route exact path="/event-list/:id" component={Event} deleteEvent={this.deleteEvent}/>
-          /*<Event event={this.state.event} deleteEvent={this.deleteEvent} />
-          <EventList event={this.state.eventlist} />*/
         </div>
       </div>
     );

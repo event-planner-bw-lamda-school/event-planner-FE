@@ -9,6 +9,7 @@ import EventList from './components/EventList';
 import Swal from 'sweetalert2';
 import PrivateRoute from './components/PrivateRoute';
 import UpdateEvent from './components/UpdateEvent';
+import './components/App.css'
 
 
 const URL = "https://event-planner-backend-larry.herokuapp.com/api"
@@ -18,9 +19,6 @@ const reqOptions = {
         Authorization: token
     }
 };
-
-import './components/App.css'
-
 
 class App extends Component {
   constructor(props) {
@@ -113,9 +111,6 @@ class App extends Component {
             render={(props) => <UpdateEvent {...props} item={this.state.item} />}
           />
             {/* <div className="App__Form">
-=======
-            <div className="App__Form">
->>>>>>> b1736f54d8b638c7b1bce415ef06135b19ff08a2
               <div className="PageSwitcher">
                   {/* <NavLink to="/Log-in" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Login</NavLink>
                   <NavLink exact to="/" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign Up</NavLink> */}
@@ -131,17 +126,13 @@ class App extends Component {
                 {/* </Route>
                 <Route path="/Log-in" component={Login}>
                 </Route> */}
-                <Route exact path="/" component={EventList} />
-                <Route path="/event-list/:id" component={Event} deleteEvent={this.deleteEvent}/>
-                <Route exact path="/add-event" component={AddEvent} />
+                s
             </div>
             <div className="App__Aside">
             </div>
           </div>
-        </div>
-        </div>
-        )
-    };
+                  )
+    };   
 }
 
 export default PrivateRoute(App)(Login);

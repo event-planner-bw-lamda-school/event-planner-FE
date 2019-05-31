@@ -35,7 +35,7 @@ class UpdateEvent extends Component {
           // console.log(res)
           this.setState({
             ...this.state,
-            item: res.data
+            item: res.data[0]
           })
         });
     }
@@ -48,15 +48,9 @@ class UpdateEvent extends Component {
               Authorization: token
           }
       }
-        const newEvent = {
-            name: this.state.name,
-            date: this.state.date,
-            time: this.state.time,
-            budget: this.state.budget,
-            description: this.state.description
-        }
+        const updatedEvent = this.state.item
         axios
-        .post('https://event-planner-backend-larry.herokuapp.com/api/events', newEvent, reqOptions)
+        .put(`https://event-planner-backend-larry.herokuapp.com/api/events/${updatedEvent.id}`, updatedEvent, reqOptions)
         .then(res => {
         console.log(res.data);
         window.location.href = '/'
@@ -65,10 +59,15 @@ class UpdateEvent extends Component {
     }
 
    changeHandler = (e) => {
-     console.log(e)
+     console.log(e.target.value)
        this.setState({
-           [e.target.name]: e.target.value
+          ...this.state,
+          item: {
+            ...this.state.item,
+            [e.target.name]: e.target.value
+          }
        })
+
    }
 
     render(){
@@ -94,25 +93,25 @@ class UpdateEvent extends Component {
                     <form className="FormFields" onSubmit={this.addEvent}>
                       <div className="FormField">
                           <label className="FormField__Label">Name</label>
-                          <input className="FormField__Input" type="text" name="name" onChange={this.changeHandler} value={this.state.item[0].name}/>
+                          <input className="FormField__Input" type="text" name="name" onChange={(e) => this.changeHandler(e)} value={this.state.item.name}/>
                       </div>
                       <div className="FormField">
                           <label className="FormField__Label">Date</label>
-                          <input className="FormField__Input" type="text" name="date" onChange={this.changeHandler} value={this.state.item[0].date}/>
+                          <input className="FormField__Input" type="text" name="date" onChange={(e) => this.changeHandler(e)} value={this.state.item.date}/>
                       </div>
                       <div className="FormField">
                           <label className="FormField__Label">Time</label>
-                          <input className="FormField__Input" type="text" name="time" onChange={this.changeHandler} value={this.state.item[0].time}/>
+                          <input className="FormField__Input" type="text" name="time" onChange={(e) => this.changeHandler(e)} value={this.state.item.time}/>
                       </div>
                       <div className="FormField">
                           <label className="FormField__Label">Budget</label>
-                          <input className="FormField__Input" type="number" name="budget" onChange={this.changeHandler} value={this.state.item[0].budget}/>
+                          <input className="FormField__Input" type="number" name="budget" onChange={(e) => this.changeHandler(e)} value={this.state.item.budget}/>
                       </div>
                       <div className="FormField">
                           <label className="FormField__Label">Description</label>
-                          <input className="FormField__Input" type="text" name="description" onChange={this.changeHandler} value={this.state.item[0].description}/>
+                          <input className="FormField__Input" type="text" name="description" onChange={(e) => this.changeHandler(e)} value={this.state.item.description}/>
                       </div>
-                      <button className="FormField__Button" type="submit">Submit Event</button>
+                      <button className="FormField__Button" type="submit" onClick={(e) => this.updateEvent(e)}>Submit Event</button>
                   </form>
                 </div>
               </div>

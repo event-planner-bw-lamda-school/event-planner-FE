@@ -8,10 +8,8 @@ import AddEvent from './components/AddEvent'
 import EventList from './components/EventList';
 import Swal from 'sweetalert2';
 import PrivateRoute from './components/PrivateRoute';
-import AddEvent from './components/AddEvent';
 import UpdateEvent from './components/UpdateEvent';
 
-<<<<<<< HEAD
 
 const URL = "https://event-planner-backend-larry.herokuapp.com/api"
 const token = localStorage.getItem('token');
@@ -20,9 +18,9 @@ const reqOptions = {
         Authorization: token
     }
 };
-=======
+
 import './components/App.css'
->>>>>>> b1736f54d8b638c7b1bce415ef06135b19ff08a2
+
 
 class App extends Component {
   constructor(props) {
@@ -97,7 +95,7 @@ class App extends Component {
    console.log(item)
    this.setState({
      ...this.state,
-     item: item 
+     item: item
    })
    window.location.href =`/update/${item.id}`
  }
@@ -107,7 +105,6 @@ class App extends Component {
       <div>
         <div basename="/react-auth-ui/">
           <div className="App">
-<<<<<<< HEAD
           <Route exact path="/" component={EventList} />
           <Route exact path="/event-list/:id" render={(props) => <Event {...props} update={this.update}/>}/>
           <Route exact path="/add-event" component={AddEvent} />
@@ -144,7 +141,7 @@ class App extends Component {
         </div>
         </div>
         )
-    };   
+    };
 }
 
 export default PrivateRoute(App)(Login);

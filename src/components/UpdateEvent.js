@@ -65,15 +65,10 @@ class UpdateEvent extends Component {
     }
 
    changeHandler = (e) => {
-     console.log(e.target.value)
+     console.log(e)
        this.setState({
-          ...this.state,
-          item: {
-            ...this.state.item,
-            [e.target.name]: e.target.value
-          }
+           [e.target.name]: e.target.value
        })
-
    }
 
     render(){
@@ -99,23 +94,23 @@ class UpdateEvent extends Component {
                     <form className="FormFields" onSubmit={this.addEvent}>
                       <div className="FormField">
                           <label className="FormField__Label">Name</label>
-                          <input className="FormField__Input" type="text" name="name" onChange={(e) => this.changeHandler(e)} value={this.state.item[0].name}/>
+                          <input className="FormField__Input" type="text" name="name" onChange={this.changeHandler} value={this.state.item[0].name}/>
                       </div>
                       <div className="FormField">
                           <label className="FormField__Label">Date</label>
-                          <input className="FormField__Input" type="text" name="date" onChange={(e) => this.changeHandler(e)} value={this.state.item[0].date}/>
+                          <input className="FormField__Input" type="text" name="date" onChange={this.changeHandler} value={this.state.item[0].date}/>
                       </div>
                       <div className="FormField">
                           <label className="FormField__Label">Time</label>
-                          <input className="FormField__Input" type="text" name="time" onChange={(e) => this.changeHandler(e)} value={this.state.item[0].time}/>
+                          <input className="FormField__Input" type="text" name="time" onChange={this.changeHandler} value={this.state.item[0].time}/>
                       </div>
                       <div className="FormField">
                           <label className="FormField__Label">Budget</label>
-                          <input className="FormField__Input" type="number" name="budget" onChange={(e) => this.changeHandler(e)} value={this.state.item[0].budget}/>
+                          <input className="FormField__Input" type="number" name="budget" onChange={this.changeHandler} value={this.state.item[0].budget}/>
                       </div>
                       <div className="FormField">
                           <label className="FormField__Label">Description</label>
-                          <input className="FormField__Input" type="text" name="description" onChange={(e) => this.changeHandler(e)} value={this.state.item[0].description}/>
+                          <input className="FormField__Input" type="text" name="description" onChange={this.changeHandler} value={this.state.item[0].description}/>
                       </div>
                       <button className="FormField__Button" type="submit">Submit Event</button>
                   </form>

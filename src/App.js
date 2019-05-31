@@ -4,6 +4,7 @@ import SignUpForm from './components/SignUpForm';
 import Login from './components/Login';
 import axios from 'axios';
 import Event from './components/Event';
+import AddEvent from './components/AddEvent'
 import EventList from './components/EventList';
 import Swal from 'sweetalert2';
 import PrivateRoute from './components/PrivateRoute';
@@ -112,8 +113,9 @@ class App extends Component {
                 {/* </Route>
                 <Route path="/Log-in" component={Login}>
                 </Route> */}
-                <Route exact path="/event-list" component={EventList} />
+                <Route exact path="/" component={EventList} />
                 <Route path="/event-list/:id" component={Event} deleteEvent={this.deleteEvent}/>
+                <Route exact path="/add-event" component={AddEvent} />
             </div>
             <div className="App__Aside">
             </div>

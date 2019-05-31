@@ -1,12 +1,101 @@
 import React, {Component} from 'react';
 import Styled from 'styled-components';
 import {Link} from 'react-router-dom';
-import AddEvent from './AddEvent';
+import TodoList from '../TodoComponents/TodoList';
+import TodoForm from '../TodoComponents/TodoForm';
+import axios from 'axios';
+
 
 
 import items from '../data';
 
+const Todo = [
+  {
+    task: 'Bring more chairs',
+    id: 5,
+    completed: false
+  },
+  {
+    task: 'Add more flowers',
+    id: 2,
+    completed: false
+  },
+  {
+    task: 'Test microphones',
+    id: 7,
+    completed: false
+  },
+  {
+    task: 'Make sure is well prepped',
+    id: 10,
+    completed: false
+  },
+];
+
+
 class EventList extends Component {
+  constructor() {
+    super();
+    this.state = {
+      Todo: Todo,
+      items: []
+    };
+  }
+
+  componentDidMount() {
+    const token = localStorage.getItem('token');
+    const reqOptions = {
+        headers: {
+            Authorization: token
+        }
+    };
+    console.log(token);
+    axios.get('https://event-planner-backend-larry.herokuapp.com/api/events', reqOptions)
+      .then(res => {
+        console.log(res)
+        this.setState({
+          ...this.state, items: res.data
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
+   toggleItem = itemId => {
+    this.setState({
+      Todo: this.state.Todo.map(item => {
+        if (itemId === item.id) {
+          return {
+            ...item,
+            purchased: !item.purchased
+          };
+        } else {
+          return item;
+        }
+      })
+    });
+  };
+
+  addItem = (event, item) => {
+    event.preventDefault();
+    const newItem = {
+      name: item,
+      id: Date.now(),
+      purchased: false
+    };
+    this.setState({
+      Todo: [...this.state.Todo, newItem]
+    });
+  };
+
+  clearPurchased = event => {
+    event.preventDefault();
+    this.setState({
+      Todo: this.state.Todo.filter(item => {
+        return !item.purchased;
+      })
+    });
+  };
+
     render(){
         return(
             <div>
@@ -18,7 +107,7 @@ class EventList extends Component {
                     <Link to="/past" className="event_history">Past</Link><span className="span_break">|</span><Link to="/upcoming" className="event_history">Upcoming</Link><span className="span_break">|</span><Link to="/add-event" className="event_history">Add Event</Link>
                 </STATUS>
                 <WRAPPER>
-               {items.map(item => {
+               {this.state.items.map(item => {
                    return (
                        <CARD>
                           <p>Client: {item.name}</p>
@@ -26,13 +115,22 @@ class EventList extends Component {
                           <p>Date: {item.date}</p>
                           <p>Contact: {item.email}</p>
                           <Link to={`/event-list/${item.id}`}>
-                            <button>Details</button>
+                            <button className="Detail-Button">Details</button>
                           </Link>
                        </CARD>
 
                    )
                })}
                </WRAPPER>
+               <div className="shopping-list">
+                 <h1>Shopping List</h1>
+                 <TodoForm addItem={this.addItem} />
+                 <TodoList
+                  Todo={this.state.Todo}
+                  toggleItem={this.toggleItem}
+                  clearPurchased={this.clearPurchased}
+                  />
+               </div>
             </div>
         )
     }

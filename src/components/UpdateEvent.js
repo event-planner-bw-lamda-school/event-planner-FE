@@ -3,27 +3,44 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import "./App.css";
 
-class AddEvent extends Component {
+const URL = "https://event-planner-backend-larry.herokuapp.com/api"
+const token = localStorage.getItem('token');
+const reqOptions = {
+    headers: {
+        Authorization: token
+    }
+};
+
+class UpdateEvent extends Component {
 
     constructor() {
         super();
         this.state = {
-            name: "",
-            email: "",
-            eventTitle: "",
-            date: "",
-            location: "",
-            address: "",
-            city: "",
-            state: "",
-            time: "",
-            budget: "",
-            description: ""
+            item: {
+              name: "",
+              date: "",
+              time: "",
+              budget: "",
+              description: ""
+            }
         }
     }
+    componentDidMount() {
+      const str = window.location.href
+      const id = str[str.length -1]
+      console.log(id)
+      axios
+        .get(`${URL}/events/${id}`, reqOptions)
+        .then(res => {
+          // console.log(res)
+          this.setState({
+            ...this.state,
+            item: res.data
+          })
+        });
+    }
 
-
-    addEvent = e => {
+    updateEvent = e => {
         e.preventDefault();
         const token = localStorage.getItem('token');
         const reqOptions = {
@@ -48,14 +65,26 @@ class AddEvent extends Component {
     }
 
    changeHandler = (e) => {
+     console.log(e.target.value)
        this.setState({
-           [e.target.name]: e.target.value
+          ...this.state,
+          item: {
+            ...this.state.item,
+            [e.target.name]: e.target.value
+          }
        })
+
    }
 
     render(){
+
+      if(this.state.item.name === ""){
+        return <h1>Loading...</h1>
+      } else {
         return(
+          // <h1>Hi</h1>
           <>
+
             <div className="App__Form">
               <div className="PageSwitcher">
                 <Link
@@ -70,27 +99,23 @@ class AddEvent extends Component {
                     <form className="FormFields" onSubmit={this.addEvent}>
                       <div className="FormField">
                           <label className="FormField__Label">Name</label>
-                          <input className="FormField__Input" type="text" name="name" onChange={this.changeHandler} value={this.state.name}/>
+                          <input className="FormField__Input" type="text" name="name" onChange={(e) => this.changeHandler(e)} value={this.state.item[0].name}/>
                       </div>
                       <div className="FormField">
                           <label className="FormField__Label">Date</label>
-                          <input className="FormField__Input" type="text" name="date" onChange={this.changeHandler} value={this.state.date}/>
-                      </div>
-                      <div className="FormField">
-                          <label className="FormField__Label">Address</label>
-                          <input className="FormField__Input" type="text" name="address" onChange={this.changeHandler} value={this.state.address}/>
+                          <input className="FormField__Input" type="text" name="date" onChange={(e) => this.changeHandler(e)} value={this.state.item[0].date}/>
                       </div>
                       <div className="FormField">
                           <label className="FormField__Label">Time</label>
-                          <input className="FormField__Input" type="text" name="time" onChange={this.changeHandler} value={this.state.time}/>
+                          <input className="FormField__Input" type="text" name="time" onChange={(e) => this.changeHandler(e)} value={this.state.item[0].time}/>
                       </div>
                       <div className="FormField">
                           <label className="FormField__Label">Budget</label>
-                          <input className="FormField__Input" type="number" name="budget" onChange={this.changeHandler} value={this.state.budget}/>
+                          <input className="FormField__Input" type="number" name="budget" onChange={(e) => this.changeHandler(e)} value={this.state.item[0].budget}/>
                       </div>
                       <div className="FormField">
                           <label className="FormField__Label">Description</label>
-                          <input className="FormField__Input" type="text" name="description" onChange={this.changeHandler} value={this.state.description}/>
+                          <input className="FormField__Input" type="text" name="description" onChange={(e) => this.changeHandler(e)} value={this.state.item[0].description}/>
                       </div>
                       <button className="FormField__Button" type="submit">Submit Event</button>
                   </form>
@@ -102,6 +127,7 @@ class AddEvent extends Component {
           </>
         )
     }
+      }
 }
 
-export default AddEvent;
+export default UpdateEvent;

@@ -1,7 +1,8 @@
 .App {
   height: 100vh;
   display: flex;
-  color: white;
+  color: black;
+  background-color: white;
 }
 
 .App__Aside {
@@ -125,6 +126,25 @@
   color: #4e148c;
 }
 
+.ToDo-Button, .Detail-Button, .Card-btn {
+  background-color: #4e148c;
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 25px;
+  padding: 15px 60px;
+  font-size: .8em;
+  font-weight: 500;
+  margin-left: 15px;
+}
+
+.clear-completed-btn {
+  color: white;
+  border-radius: 20px;
+  padding: 5px 20px;
+  background-color: #2c0735;
+}
+
 .FormField__Link {
   color: #66707D;
   text-decoration: none;
@@ -158,6 +178,31 @@
 
 h2 {
   padding-right: 15px;
+}
+
+.shopping-list {
+  margin-left: 30%;
+  padding-top: 20px;
+  margin-bottom: 50px;
+}
+
+.item {
+  background-color: white;
+  width: 45%;
+  text-align: left;
+  margin: 4px 0;
+  padding-left: 8px;
+}
+
+.item.purchased {
+  background-color: white;
+  text-decoration: line-through;
+}
+
+.Todo-input {
+  border: none;
+  border-width: 100%;
+  border-bottom: 1px solid black;
 }
 
 

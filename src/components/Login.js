@@ -27,7 +27,6 @@ class Login extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    // const new
     // console.log('The form was submitted with the following data:');
     // console.log(this.state);
     this.props.loginUser(this.state);

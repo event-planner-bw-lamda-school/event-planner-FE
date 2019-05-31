@@ -7,24 +7,35 @@ import Event from './components/Event';
 import EventList from './components/EventList';
 import Swal from 'sweetalert2';
 import PrivateRoute from './components/PrivateRoute';
+import AddEvent from './components/AddEvent';
+import UpdateEvent from './components/UpdateEvent';
 
 
+const URL = "https://event-planner-backend-larry.herokuapp.com/api"
+const token = localStorage.getItem('token');
+const reqOptions = {
+    headers: {
+        Authorization: token
+    }
+};
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: []
+      events: [],
+      item: {}
     };
   }
 
+
   componentDidMount() {
-    this.getEvent();
+
   }
 
  getEvent = () => {
    axios
-     .get(`http://localhost:3000/events`)
+     .get(`${URL}/events`)
      .then(res => {
        console.log(res.data);
        this.setState({
@@ -33,25 +44,10 @@ class App extends Component {
      });
  }
 
- deleteEvent = (id) => {
-   axios
-    .delete(`http://localhost:3000/events/${id}`)
-    .then(res => {
-      if (res.status === 200) {
-        const events = [...this.state.events];
-        let result = events.filter(event => (
-          event.id !== id
-        ));
-        this.setState({
-          events: result
-        })
-      }
-    })
- }
 
  createEvent = (event) => {
    axios
-    .post(`http://localhost:3000/events`, {event})
+    .post(`${URL}/events`, {event})
     .then(res => {
       if (res.status === 201) {
         Swal.fire(
@@ -72,7 +68,7 @@ class App extends Component {
    const {id} = eventUpdate;
 
    axios
-    .put(`http://localhost:3000/events/${id}`, {eventUpdate})
+    .put(`${URL}/events/${id}`, {eventUpdate})
     .then(res => {
       if (res.status === 200) {
         Swal.fire(
@@ -91,11 +87,28 @@ class App extends Component {
     })
  }
 
+ update = (e, item) => {
+   e.preventDefault();
+   console.log(item)
+   this.setState({
+     ...this.state,
+     item: item 
+   })
+   window.location.href =`/update/${item.id}`
+ }
+
   render() {
     return (
       <div>
         <div basename="/react-auth-ui/">
           <div className="App">
+          <Route exact path="/" component={EventList} />
+          <Route exact path="/event-list/:id" render={(props) => <Event {...props} update={this.update}/>}/>
+          <Route exact path="/add-event" component={AddEvent} />
+          <Route
+            exact path='/update/:id'
+            render={(props) => <UpdateEvent {...props} item={this.state.item} />}
+          />
             {/* <div className="App__Form">
               <div className="PageSwitcher">
                   <NavLink to="/Log-in" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Login</NavLink>
@@ -116,13 +129,6 @@ class App extends Component {
                 <Route path="/event-list/:id" component={Event} deleteEvent={this.deleteEvent}/>
             </div> */}
           </div>
-          <Route exact path="/event-list" component={EventList} />
-          <Route exact path="/event-list/:id" component={Event} deleteEvent={this.deleteEvent}/>
-<<<<<<< HEAD
-=======
-          {/* <Event event={this.state.event} deleteEvent={this.deleteEvent} />
-          <EventList event={this.state.eventlist} /> */}
->>>>>>> e93636d1bf8624d32ce2acf7f42d7269b7a43715
         </div>
       </div>
     );

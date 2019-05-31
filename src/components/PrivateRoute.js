@@ -5,6 +5,7 @@ import SignUpForm from './SignUpForm';
 import axios from 'axios';
 import './App.css';
 
+
 const PrivateRoute =  App => Login => {
   return class extends Component {
     constructor(props) {
@@ -15,11 +16,11 @@ const PrivateRoute =  App => Login => {
       };
     }
     componentDidMount() {
-      // if (!localStorage.getItem('token')) {
-      //   this.setState({ loggedIn: true });
-      // } else {
-      //   this.setState({ loggedIn: true });
-      // }
+      if (!localStorage.getItem('token')) {
+        this.setState({ loggedIn: false });
+      } else {
+        this.setState({ loggedIn: true });
+      }
     }
 
     loginUser = (userinfo) => {
@@ -28,44 +29,52 @@ const PrivateRoute =  App => Login => {
       axios
         .post('https://event-planner-backend-larry.herokuapp.com/api/login', userinfo)
         .then(res => {
-          console.log(res)
+          console.log(res);
+          localStorage.setItem("token", res.data.token)
+          // localStorage.setItem("userid", res.data.id)
+          this.setState({
+            loggedIn: true
+          })
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log(err));
     };
 
     registerUser = (userinfo) => {
-      console.log(userinfo)
+      console.log(userinfo);
       axios
         .post('https://event-planner-backend-larry.herokuapp.com/api/register', userinfo)
         .then(res => {
-          console.log(res)
+          console.log(res);
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log(err));
     };
+
     btnSelected = e => {
+      e.preventDefault();
       const val = e.target.textContent.toLowerCase()
       if(val.includes('login')) {
         this.setState({
           isLoggingIn: true
-        })
+        });
       } else {
         this.setState({
           isLoggingIn: false
-        })
+        });
       }
-      console.log()
-    }
+      console.log();
+    };
+
     render() {
-      if(!this.state.loggedIn) { 
+      if(!this.state.loggedIn) {
         if(this.state.isLoggingIn) {
-          return <Login loginUser={this.loginUser} btnSelected={this.btnSelected}/> 
+          return <Login loginUser={this.loginUser} btnSelected={this.btnSelected}/>
         } else {
-          return <SignUpForm loginUser={this.loginUser} btnSelected={this.setState.btnSelected} />
+          return <SignUpForm registerUser={this.registerUser} btnSelected={this.setState.btnSelected} />
         }
       } else {
         return <App />
       }
-      
+
     }
   };
 };

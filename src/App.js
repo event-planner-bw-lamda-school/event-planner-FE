@@ -94,7 +94,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Router basename="/react-auth-ui/">
+        <div basename="/react-auth-ui/">
           <div className="App">
             {/* <div className="App__Form">
               <div className="PageSwitcher">
@@ -119,10 +119,10 @@ class App extends Component {
             </div>
           </div>
           <Route exact path="/event-list" component={EventList} />
-          <Route path="/event-list/:id" component={Event} deleteEvent={this.deleteEvent}/>
-        </Router>
-        <Event event={this.state.event} deleteEvent={this.deleteEvent} />
-        <EventList event={this.state.eventlist} />*/
+          <Route exact path="/event-list/:id" component={Event} deleteEvent={this.deleteEvent}/>
+          /*<Event event={this.state.event} deleteEvent={this.deleteEvent} />
+          <EventList event={this.state.eventlist} />*/
+        </div>
       </div>
     );
   }

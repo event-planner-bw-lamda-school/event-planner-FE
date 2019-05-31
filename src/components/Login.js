@@ -39,40 +39,40 @@ class Login extends Component {
         <div className="App">
           <div className="App__Form">
             <div className="PageSwitcher">
-              <NavLink
+              <Link
                 onClick={(e) => this.props.btnSelected(e)}
                 activeClassName="PageSwitcher__Item--Active"
                 className="PageSwitcher__Item"
               >
                 Login
-              </NavLink>
-              <NavLink
+              </Link>
+              <Link
                 exact
                 onClick={(e) => this.props.btnSelected(e)}
                 activeClassName="PageSwitcher__Item--Active"
                 className="PageSwitcher__Item"
               >
                 Sign Up
-              </NavLink>
+              </Link>
             </div>
 
             <div className="FormTitle">
-              <NavLink
+              <Link
                 onClick={(e) => this.props.btnSelected(e)}
                 activeClassName="FormTitle__Link--Active"
                 className="FormTitle__Link"
               >
                 Login
-              </NavLink>
+              </Link>
               or
-              <NavLink
+              <Link
                 exact
                 onClick={(e) => this.props.btnSelected(e)}
                 activeClassName="FormTitle__Link--Active"
                 className="FormTitle__Link"
               >
                 Sign Up
-              </NavLink>
+              </Link>
             </div>
             <div className="FormCenter">
               <form className="FormFields" onSubmit={this.handleSubmit}>
@@ -107,13 +107,15 @@ class Login extends Component {
                 </div>
 
                 <div className="FormField">
-                  <button onClick={(e) => this.props.btnSelected(e)} className="FormField__Button mr-20">Sign In</button>{" "}
+                  <button onClick={(e) => this.handleSubmit(e)} className="FormField__Button mr-20">Sign In</button>{" "}
                   <Link to="/" onClick={(e) => this.props.btnSelected(e)} className="FormField__Link">
                     Don't have an Account? Sign Up
                   </Link>
                 </div>
               </form>
             </div>
+          </div>
+          <div className="App__Aside">
           </div>
         </div>
       </>

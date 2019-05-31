@@ -10,10 +10,10 @@ class EventList extends Component {
         return(
             <div>
                 <HEADER>
-                  <h3>Welcome <span>Kelly!</span></h3>
+                  <h1>Welcome!</h1>
                 </HEADER>
                 <STATUS>
-                    <h1>My Events</h1>
+                    <h2>My Events</h2>
                     <Link to="/past" className="event_history">Past</Link><span className="span_break">|</span><Link to="/upcoming" className="event_history">Upcoming</Link><span className="span_break">|</span><Link to="/past" className="event_history">Add Event</Link>
                 </STATUS>
                 <WRAPPER>

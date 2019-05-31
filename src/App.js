@@ -8,7 +8,7 @@ import EventList from './components/EventList';
 import Swal from 'sweetalert2';
 import PrivateRoute from './components/PrivateRoute';
 
-
+import './components/App.css'
 
 class App extends Component {
   constructor(props) {
@@ -96,32 +96,31 @@ class App extends Component {
       <div>
         <div basename="/react-auth-ui/">
           <div className="App">
-            {/* <div className="App__Form">
+            <div className="App__Form">
               <div className="PageSwitcher">
-                  <NavLink to="/Log-in" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Login</NavLink>
-                  <NavLink exact to="/" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign Up</NavLink>
+                  {/* <NavLink to="/Log-in" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Login</NavLink>
+                  <NavLink exact to="/" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign Up</NavLink> */}
                 </div>
 
                 <div className="FormTitle">
-                    <NavLink to="/Log-in" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Login</NavLink>
+                    {/* <NavLink to="/Log-in" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Login</NavLink>
                     or
-                    <NavLink exact to="/" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign Up</NavLink>
+                    <NavLink exact to="/" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign Up</NavLink> */}
                 </div>
 
-                <Route exact path="/" component={SignUpForm}>
-                </Route>
+                {/* <Route exact path="/" component={SignUpForm}> */}
+                {/* </Route>
                 <Route path="/Log-in" component={Login}>
-                </Route>
+                </Route> */}
                 <Route exact path="/event-list" component={EventList} />
                 <Route path="/event-list/:id" component={Event} deleteEvent={this.deleteEvent}/>
-            </div> */}
+            </div>
             <div className="App__Aside">
             </div>
           </div>
-          <Route exact path="/event-list" component={EventList} />
-          <Route exact path="/event-list/:id" component={Event} deleteEvent={this.deleteEvent}/>
-          {/* <Event event={this.state.event} deleteEvent={this.deleteEvent} />
-          <EventList event={this.state.eventlist} /> */}
+          {/* <Route exact path="/event-list" component={EventList} />
+          <Route exact path="/event-list/:id" component={Event} deleteEvent={this.deleteEvent}/> */}
+          
         </div>
       </div>
     );

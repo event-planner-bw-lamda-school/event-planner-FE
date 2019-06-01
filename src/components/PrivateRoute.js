@@ -69,7 +69,7 @@ const PrivateRoute =  App => Login => {
         if(this.state.isLoggingIn) {
           return <Login loginUser={this.loginUser} btnSelected={this.btnSelected}/>
         } else {
-          return <SignUpForm registerUser={this.registerUser} btnSelected={this.setState.btnSelected} />
+          return <SignUpForm registerUser={this.registerUser} btnSelected={this.btnSelected} />
         }
       } else {
         return <App />

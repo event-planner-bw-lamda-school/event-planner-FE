@@ -70,12 +70,6 @@ class Event extends Component {
           <p>Time: {item.time}</p>
           <h4>Location</h4>
           <p>{item.location}</p>
-          <p>
-            Address:{" "}
-            <span>
-              {item.address}, {item.city}, {item.state}
-            </span>
-          </p>
           <h4>Budget</h4>
           <p>{item.budget}</p>
           <h4>Description</h4>
